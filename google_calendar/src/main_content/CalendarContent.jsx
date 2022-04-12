@@ -5,7 +5,11 @@ import './CalendarContent.css'
 export const CalendarContent = () => {
  return (
  <div className="calendar-wrapper">
-   <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
+   <Calendar 
+   dateCellRender={dateCellRender} 
+   monthCellRender={monthCellRender} 
+   
+   />
    </div>)
 }
 
@@ -46,7 +50,7 @@ function dateCellRender(value) {
     <ul className="events">
       {listData.map(item => (
         <li key={item.content}>
-          <Badge status={item.type} text={item.content} />
+          <Badge status={item.type} text={item.content}  />
         </li>
       ))}
     </ul>
