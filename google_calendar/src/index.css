@@ -11,7 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.main{
+.app{
   position: absolute;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.main-wrapper{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }

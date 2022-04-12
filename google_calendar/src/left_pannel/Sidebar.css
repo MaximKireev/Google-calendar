@@ -1,8 +1,7 @@
 .sidebar-wrapper{
-    width: 20%;
+    min-width: 20%;
+    position: relative;
     height: 100%;
     border-right:1px solid rgb(215, 212, 212);
-    position: absolute;
     left: 0;
-    top: 70px;
 }
