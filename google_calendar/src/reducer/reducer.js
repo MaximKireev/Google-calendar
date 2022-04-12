@@ -19,9 +19,15 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_EVENT':
             
             ; 
-           
+        case 'SET_TODAY':
+            ;
+        case 'MOTH_REVERS':
+                ;
+        case 'MOTH_FWD':
+                    ;
         default:
-                return state
+
+        return state
 
     }
 }
