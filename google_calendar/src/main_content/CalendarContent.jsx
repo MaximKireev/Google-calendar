@@ -1,17 +1,25 @@
 import 'antd/dist/antd.css';
 import { Calendar, Badge } from 'antd';
 import './CalendarContent.css'
+import { EventCreator } from '../eventCreator/eventCreator';
+import React from 'react'
+import useToggle from '../hooks/useToggle';
 
 export const CalendarContent = () => {
+  let [visible, setVisible] = useToggle(false)
+
  return (
  <div className="calendar-wrapper">
    <Calendar 
-   dateCellRender={dateCellRender} 
-   monthCellRender={monthCellRender} 
-   
+  // dateCellRender={dateCellRender} 
+  monthCellRender={monthCellRender} 
+  onSelect = {setVisible}
    />
+   {visible? <EventCreator /> : null}
    </div>)
 }
+
+
 
 function getListData(value) {
   let listData;
@@ -50,7 +58,9 @@ function dateCellRender(value) {
     <ul className="events">
       {listData.map(item => (
         <li key={item.content}>
-          <Badge status={item.type} text={item.content}  />
+          <Badge
+          
+          status={item.type} text={item.content}  />
         </li>
       ))}
     </ul>
