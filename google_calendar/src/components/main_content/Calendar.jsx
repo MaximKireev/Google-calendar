@@ -1,5 +1,6 @@
 import {changeMonth, createCalendarMatrix} from '../../utils/createCalendar'
 import { Cell } from './Cell';
+import './Calendar.css'
 import { EventCreator } from '../eventCreator/eventCreator';
 import React from 'react'
 
@@ -21,7 +22,7 @@ export const Calendar = () => {
   }, []);
 
   return (
-    <div className="wrapper">
+    <div className="calendar-wrapper">
       <button ref={prevBtnRef} className="prevMonth">
         Prev
       </button>
@@ -30,13 +31,7 @@ export const Calendar = () => {
         Next
       </button>
       {calendar.map((item) => (
-        <div
-          style={{
-            display: "flex",
-            width: "714px"
-          }}
-          className="dayWrapper"
-        >
+        <div className="weak-wrapper">
           {item.map((innerItem) => (
             <Cell id={innerItem.id} valueWithData={innerItem.day} />
           ))}

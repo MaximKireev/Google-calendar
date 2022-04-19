@@ -1,5 +1,6 @@
 import {toggleMenu} from "../../redux/actions";
 import {connect} from 'react-redux'
+import {ChangeCalendarView} from './ChangeCalendarView'
 
 
 import './Header.css'
@@ -18,6 +19,7 @@ return (
         <span className="logo-text1">Google</span><span className="logo-text2">Calendar</span>
         </div>
         <PeriodControl />
+    < ChangeCalendarView/>
     </div>
 )
 }
