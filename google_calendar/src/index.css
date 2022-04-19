@@ -24,3 +24,7 @@ code {
   height: 100%;
   display: flex;
 }
+
+.day-view-wrapper{
+  width: 100%;
+}

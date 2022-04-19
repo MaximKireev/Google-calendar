@@ -2,7 +2,6 @@ import {toggleMenu} from "../../redux/actions";
 import {connect} from 'react-redux'
 import {ChangeCalendarView} from './ChangeCalendarView'
 
-
 import './Header.css'
 import {MenuOutlined, CalendarOutlined} from '@ant-design/icons';
 import PeriodControl from './PeriodControl'

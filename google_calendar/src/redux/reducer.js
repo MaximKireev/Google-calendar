@@ -1,5 +1,6 @@
-import {createCalendarMatrix} from '../utils/createCalendar'
-import * as constants from './constants'
+import {createCalendarMatrix, changeMonth} from '../utils/createCalendar'
+import * as constants from './constants';
+let currentCalendar = createCalendarMatrix()
 
 const initialState = {
     currentDate: new Date(),
@@ -7,7 +8,7 @@ const initialState = {
 
     currentYear: function(){return this.currentDate.getFullYear()} ,
     currentMonth: function(){this.currentDate.getMonth()},
-    currentCalendar: () => createCalendarMatrix(),
+    currentCalendar,
     
 };
 
@@ -24,11 +25,18 @@ const reducer = (state = initialState, action) => {
             return  console.log('today setted');
 
         case constants.SWITCH_TO_A_MONTH_AGO:
-            return   console.log('MONTH_REVERS');
+            
+            return {
+                ...state,
+                currentCalendar: changeMonth(action.payload)
+            };
 
         case constants.SWITCH_TO_ONE_MONTH_FORWARD:
-            return   console.log('MONTH_FWD');
-            
+            return {
+                ...state,
+                currentCalendar: changeMonth(action.payload)
+            };
+
         case constants.SHOW_HIDE_SIDEBAR:
             return {
                 ...state,

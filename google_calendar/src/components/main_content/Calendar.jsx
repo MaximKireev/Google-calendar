@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 
 const Calendar = ({currentCalendar}) => {
 
-let calendar = currentCalendar()
+
   return (
     <div className="calendar-wrapper">
 
-      {calendar.map((item) => (
+      {currentCalendar.map((item) => (
         <div className="weak-wrapper">
           {item.map((innerItem) => (
             <Cell id={innerItem.id} valueWithData={innerItem.day} />

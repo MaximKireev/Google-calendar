@@ -1,5 +1,6 @@
-import { day_hours } from "./utils/fixtures";
+import { day_hours } from "../../utils/fixtures";
 import { HourCell } from "./HourCell";
+import '../../index.css'
 
 export const DayView = () => {
   return (
