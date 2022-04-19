@@ -1,37 +1,39 @@
+import * as constants from './constants'
+
 const createEvent = value => {
  
     let payload = { id: Date.now(), title: value, important: false, done: false };
     return {
-      type: "CREATE_EVENT",
+      type: constants.CREATE_NEW_CALENDAR_EVENT,
       payload
     };
   };
   
   const deleteEvent = (id) => ({
-    type: "DELETE_EVENT",
+    type: constants.DELETE_CALENDAR_EVENT,
     payload: id
   });
   
   const setToday = (id) => {
     return {
-      type: "SET_TODAY",
+      type: constants.SET_DATE_TO_TODAY,
     };
   };
   
   const monthReverse = (id) => {
     return {
-      type: "MONTH_REVERS",
+      type: constants.SWITCH_TO_A_MONTH_AGO,
       payload: id
     };
   };
   const monthForward = () => {
     return {
-      type: "MONTH_FWD"
+      type: constants.SWITCH_TO_ONE_MONTH_FORWARD
     };
   };
   const toggleMenu = () => {
     return {
-      type: "SHOW_HIDE_MENU"
+      type: constants.SHOW_HIDE_SIDEBAR
     };
   };
 

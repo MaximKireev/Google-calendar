@@ -1,28 +1,35 @@
+import {createCalendarMatrix} from '../utils/createCalendar'
+import * as constants from './constants'
+
 const initialState = {
     currentDate: new Date(),
     isSideBarVisible: true,
-    weekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    DaysInMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+
     currentYear: function(){return this.currentDate.getFullYear()} ,
     currentMonth: function(){this.currentDate.getMonth()},
-    events: []
+    currentCalendar: () => createCalendarMatrix(),
     
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
        
-        case 'CREATE_EVENT':
+        case constants.CREATE_NEW_CALENDAR_EVENT:
          return   console.log('event created');  
-        case 'DELETE_EVENT':
+
+        case constants.DELETE_CALENDAR_EVENT:
             return  console.log('DELETE_EVENT'); 
-        case 'SET_TODAY':
+
+        case constants.SET_DATE_TO_TODAY:
             return  console.log('today setted');
-        case 'MONTH_REVERS':
+
+        case constants.SWITCH_TO_A_MONTH_AGO:
             return   console.log('MONTH_REVERS');
-        case 'MONTH_FWD':
+
+        case constants.SWITCH_TO_ONE_MONTH_FORWARD:
             return   console.log('MONTH_FWD');
-        case 'SHOW_HIDE_MENU':
+            
+        case constants.SHOW_HIDE_SIDEBAR:
             return {
                 ...state,
                 isSideBarVisible: !state.isSideBarVisible

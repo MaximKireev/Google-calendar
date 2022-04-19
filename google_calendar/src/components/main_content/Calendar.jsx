@@ -1,35 +1,15 @@
-import {changeMonth, createCalendarMatrix} from '../../utils/createCalendar'
 import { Cell } from './Cell';
 import './Calendar.css'
 import { EventCreator } from '../eventCreator/eventCreator';
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
-export const Calendar = () => {
-  let initialCalendar = createCalendarMatrix();
+const Calendar = ({currentCalendar}) => {
 
-  let [calendar, setCalendar] = React.useState(initialCalendar);
-
-  const prevBtnRef = React.useRef(null);
-  const nextBtnRef = React.useRef(null);
-
-  React.useEffect(() => {
-    prevBtnRef.current.addEventListener("click", () => {
-      setCalendar(changeMonth(-1));
-    });
-    nextBtnRef.current.addEventListener("click", () => {
-      setCalendar(changeMonth(1));
-    });
-  }, []);
-
+let calendar = currentCalendar()
   return (
     <div className="calendar-wrapper">
-      <button ref={prevBtnRef} className="prevMonth">
-        Prev
-      </button>
 
-      <button ref={nextBtnRef} className="nextMonth">
-        Next
-      </button>
       {calendar.map((item) => (
         <div className="weak-wrapper">
           {item.map((innerItem) => (
@@ -41,3 +21,10 @@ export const Calendar = () => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    currentCalendar: state.currentCalendar
+  }
+}
+
+export default connect(mapStateToProps, null)(Calendar)

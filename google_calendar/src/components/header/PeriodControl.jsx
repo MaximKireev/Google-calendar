@@ -6,11 +6,23 @@ import { connect } from 'react-redux';
 
 
 const PeriodControl = ({month, year}) => {
+    const prevBtnRef = React.useRef(null);
+    const nextBtnRef = React.useRef(null);
+
+    React.useEffect(() => {
+        prevBtnRef.current.addEventListener("click", () => {
+         // setCalendar(changeMonth(-1));
+        });
+        nextBtnRef.current.addEventListener("click", () => {
+        //  setCalendar(changeMonth(1));
+        });
+      }, []);
 return (
     <div className="period-wrapper">
         <Button size={'large'}>Today</Button>
-        <LeftOutlined style={{fontSize: '20px'}}/>
-        <RightOutlined style={{fontSize: '20px'}}/>
+        <LeftOutlined ref = {prevBtnRef} style={{fontSize: '20px'}}/>
+        <RightOutlined ref = {nextBtnRef} style={{fontSize: '20px'}}/>
+        
         <span className="current-period">
             {`${new Date().toLocaleString('en-EN', { month: 'long' })} ${year}`}</span>
     </div>
