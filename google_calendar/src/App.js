@@ -1,6 +1,6 @@
-import Header from './header/Header.jsx';
-import {Sidebar} from './left_pannel/Sidebar.jsx'
-import {CalendarContent} from './main_content/CalendarContent.jsx'
+import Header from './components/header/Header.jsx';
+import {Sidebar} from './components/left_pannel/Sidebar.jsx'
+import {Calendar} from './components/main_content/Calendar.jsx'
 import { connect } from 'react-redux';
 import './index.css'
 
@@ -9,8 +9,8 @@ const App = ({isSideBarVisible}) => {
    <div className = 'app'>
    <Header />
    <div className='main-wrapper'>          
- {isSideBarVisible? <Sidebar /> : null} 
-   <CalendarContent />
+    {isSideBarVisible? <Sidebar /> : null} 
+    <Calendar />
    </div>
    </div>
  ) 

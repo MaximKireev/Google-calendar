@@ -1,0 +1,10 @@
+.day-wrapper {
+    width: 25%;
+    height: 50px;
+    border: 1px solid lightgray;
+  }
+  div[id*="prev"],
+  div[id*="Next"] {
+    color: lightgray;
+  }
+  

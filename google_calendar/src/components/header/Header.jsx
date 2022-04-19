@@ -1,4 +1,4 @@
-import {toggleMenu} from "../actions/actions.js";
+import {toggleMenu} from "../../redux/actions";
 import {connect} from 'react-redux'
 
 
