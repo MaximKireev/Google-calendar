@@ -38,6 +38,22 @@ const createEvent = value => {
     };
   };
 
+  const openEventCreatorWindow = () => {
+    return {
+      type: constants.OPEN_EVENT_CREATOR_WINDOW
+    };
+  }
+  const closeEventCreatorWindow = () => {
+    return {
+      type: constants.CLOSE_EVENT_CREATOR_WINDOW
+    };
+  }
+  const pageOnLoad = () => {
+    return {
+      type: constants.PAGE_WAS_LOADED
+    };
+  }
+
   
   export {
     createEvent,
@@ -45,5 +61,8 @@ const createEvent = value => {
     setToday,
     monthReverse,
     monthForward,
-    toggleMenu
+    toggleMenu,
+    openEventCreatorWindow,
+    closeEventCreatorWindow,
+    pageOnLoad,
   };

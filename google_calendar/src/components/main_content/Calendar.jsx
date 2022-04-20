@@ -1,19 +1,24 @@
-import { Cell } from './Cell';
+import  Cell  from './Cell';
 import './Calendar.css'
-import { EventCreator } from '../eventCreator/eventCreator';
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Calendar = ({currentCalendar}) => {
+const Calendar = ({currentCalendar, initialEvents}) => {
 
+
+
+
+  
 
   return (
     <div className="calendar-wrapper">
 
-      {currentCalendar.map((item) => (
-        <div className="weak-wrapper">
+      {currentCalendar.map((item, idx) => (
+        <div key = {idx} className="weak-wrapper">
           {item.map((innerItem) => (
-            <Cell id={innerItem.id} valueWithData={innerItem.day} />
+            <Cell 
+            key = {innerItem.id} 
+            fullItemData = {innerItem} />
           ))}
         </div>
       ))}
@@ -23,7 +28,7 @@ const Calendar = ({currentCalendar}) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentCalendar: state.currentCalendar
+    currentCalendar: state.currentCalendar,
   }
 }
 
