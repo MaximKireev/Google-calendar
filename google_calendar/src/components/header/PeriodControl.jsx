@@ -1,16 +1,16 @@
 import React from 'react'
-import { Button  } from 'antd';
+import {Button} from 'antd'
 import './Header.css'
 import {LeftOutlined, RightOutlined} from '@ant-design/icons';
-import {monthReverse, monthForward} from '../../redux/actions'
+import {monthReverse, monthForward, setToday} from '../../redux/actions'
 import { connect } from 'react-redux';
 
 
-const PeriodControl = ({year, monthReverse, monthForward}) => {
+const PeriodControl = ({year, monthReverse, monthForward, setToday}) => {
     
 return (
     <div className="period-wrapper">
-        <Button size={'large'}>Today</Button>
+        <Button size = 'middle' >Today</Button>
         <LeftOutlined onClick={monthReverse}  style={{fontSize: '20px'}}/>
         <RightOutlined onClick={monthForward} style={{fontSize: '20px'}}/>
         
@@ -30,7 +30,8 @@ return {
 const mapDispatchToProps = (dispatch) => {
     return {
         monthReverse: () => dispatch(monthReverse()),
-        monthForward: () => dispatch(monthForward())
+        monthForward: () => dispatch(monthForward()),
+        setToday: () => dispatch(setToday()) ,
     }
 }
 

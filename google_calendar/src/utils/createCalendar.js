@@ -18,15 +18,15 @@ const createCalendarMatrix = () => {
     for (let col = 0; col < 7; col++) {
       matrix[row][col] = -1;
       if (row === 1 && col >= firstDayOfMonth) {
-        matrix[row][col] = { day: counter, id: `${counter}_${month}_${year}` };
+        matrix[row][col] = { day: counter, id: `cell_${counter}_${month}_${year}` };
         counter++;
       } else if (row > 1 && counter <= numOfDays) {
-        matrix[row][col] = { day: counter, id: `${counter}_${month}_${year}` };
+        matrix[row][col] = { day: counter, id: `cell_${counter}_${month}_${year}` };
         counter++;
       } else if (row > 1 && counter > numOfDays) {
         matrix[row][col] = {
           day: counterAfter,
-          id: `${counterAfter}_${month + 1}_${year}_next`
+          id: `cell_${counterAfter}_${month + 1}_${year}_next`
         };
         counterAfter++;
       }
@@ -46,7 +46,7 @@ function changeMinusOnesToDates(matrix, month) {
     if (adjustedMaxtrix[1][i] === -1) {
       adjustedMaxtrix[1][i] = {
         day: prevMonthDates - counterOne,
-        id: `${prevMonthDates - counterOne}_${month - 1}_${year}_prev`
+        id: `cell_${prevMonthDates - counterOne}_${month - 1}_${year}_prev`
       };
       counterOne++;
     }

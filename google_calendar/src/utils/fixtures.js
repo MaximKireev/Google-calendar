@@ -12,7 +12,7 @@ export const monthNames = [
     "November",
     "December"
   ];
-  export const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  export const days = [{day: "Sun", id: 0}, {day: "Mon", id: 1}, {day: "Tue", id: 2}, {day: "Wed", id: 3}, {day: "Thu", id: 4}, {day: "Fri", id: 5}, {day: "Sat", id: 6}];
   export const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   
   export const day_hours = [

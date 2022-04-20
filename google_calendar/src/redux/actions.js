@@ -14,7 +14,7 @@ const createEvent = value => {
     payload: id
   });
   
-  const setToday = (id) => {
+  const setToday = () => {
     return {
       type: constants.SET_DATE_TO_TODAY,
     };

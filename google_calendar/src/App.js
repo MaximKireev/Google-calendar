@@ -6,18 +6,18 @@ import {DayView} from './components/main_content/DayView.jsx'
 import { connect } from 'react-redux';
 import './index.css'
 
-const App = ({isSideBarVisible}) => {
+const App = ({isVisible}) => {
  return(
    <div className = 'app'>
    <Header />
 
    
     <div className='main-wrapper'>
-    {isSideBarVisible? <Sidebar /> : null} 
+    <Sidebar />
     <Routes>
     <Route path = '/' element = {<Calendar />}/>
     <Route path = '/month' element = {<Calendar />}/>
-    <Route path = 'day' element = {<DayView />}/>
+    <Route path = '/day' element = {<DayView />}/>
     </Routes>
    </div>
    </div>
@@ -26,8 +26,9 @@ const App = ({isSideBarVisible}) => {
 
 const mapStateToProps = (state) => {
   return {
-    isSideBarVisible: state.isSideBarVisible
+    isVisible: state.isSideBarVisible,
   }
 }
+
 
 export default connect(mapStateToProps, null)(App);

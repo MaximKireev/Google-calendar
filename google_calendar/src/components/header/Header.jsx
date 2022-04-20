@@ -7,7 +7,7 @@ import {MenuOutlined, CalendarOutlined} from '@ant-design/icons';
 import PeriodControl from './PeriodControl'
 
 
-const Header = ({visible, toggleMenu}) => {
+const Header = ({toggleMenu}) => {
 return (
     <div className="header-wrapper">
         <div className="logo-menu-wrapper">

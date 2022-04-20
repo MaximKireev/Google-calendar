@@ -7,14 +7,18 @@ const initialState = {
     isSideBarVisible: true,
 
     currentYear: function(){return this.currentDate.getFullYear()} ,
-    currentMonth: function(){this.currentDate.getMonth()},
+    currentMonth: function(){return this.currentDate.getMonth()},
     currentCalendar,
     
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-       
+        case constants.SHOW_HIDE_SIDEBAR:
+            return {
+                ...state,
+                isSideBarVisible: !state.isSideBarVisible
+              }
         case constants.CREATE_NEW_CALENDAR_EVENT:
          return   console.log('event created');  
 
@@ -22,7 +26,7 @@ const reducer = (state = initialState, action) => {
             return  console.log('DELETE_EVENT'); 
 
         case constants.SET_DATE_TO_TODAY:
-            return  console.log('today setted');
+            return  console.log('SET_DATE_TO_TODAY');
 
         case constants.SWITCH_TO_A_MONTH_AGO:
             
@@ -36,12 +40,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentCalendar: changeMonth(action.payload)
             };
-
-        case constants.SHOW_HIDE_SIDEBAR:
-            return {
-                ...state,
-                isSideBarVisible: !state.isSideBarVisible
-              }
                   
         
         default:
