@@ -1,16 +1,14 @@
 import {createCalendarMatrix, changeMonth} from '../utils/createCalendar'
 import * as constants from './constants';
-let currentCalendar = createCalendarMatrix()
+let currentCalendar = createCalendarMatrix();
+let eventsInLocalStorage = JSON.parse(localStorage.getItem('events')) || [];
+
 
 const initialState = {
     currentDate: new Date(),
     isSideBarVisible: true,
     isEventCreatorWindowVisible: false,
-    initialEvents: [
-        {data: '11.3.2022', description: 'Event 1'},
-        {data: '12.3.2022', description: 'Event 2'},
-        {data: '12.3.2022', description: 'Event 3'}  ],
-
+    initialEvents: eventsInLocalStorage,
     currentYear: function(){return this.currentDate.getFullYear()} ,
     currentMonth: function(){return this.currentDate.getMonth()},
     currentCalendar,
@@ -27,16 +25,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isSideBarVisible: !state.isSideBarVisible
               }
-        case constants.OPEN_EVENT_CREATOR_WINDOW:
-            return {
-                ...state,
-                isEventCreatorWindowVisible: true
-              };
-        case constants.CLOSE_EVENT_CREATOR_WINDOW:
-            return {
-                ...state,
-                isEventCreatorWindowVisible: false
-            }       
+       
 
         case constants.CREATE_NEW_CALENDAR_EVENT:
          return   console.log('event created');  

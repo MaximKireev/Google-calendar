@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import './index.css'
 import EventCreatorWindow from './components/eventCreator/EventCreatorWindow.jsx'
 
-const App = ({isSideBarVisible, isEventCreatorWindowVisible}) => {
+const App = ({isSideBarVisible}) => {
  return(
    <div className = 'app'>
    <Header />
@@ -18,12 +18,15 @@ const App = ({isSideBarVisible, isEventCreatorWindowVisible}) => {
 
     <Routes>
     <Route path = '/' element = {<Calendar />}/>
-    <Route path = '/month' element = {<Calendar />}/>
+    <Route path = 'month' element = {<Calendar />} />
+
+    <Route path = 'month/createAnEvent/:id' element = {<EventCreatorWindow />} />
+
     <Route path = '/day' element = {<DayView />}/>
+    <Route path = '/day/:id' element = {<DayView />}/>
     </Routes>
    </div>
 
-  {isEventCreatorWindowVisible? <EventCreatorWindow /> : null} 
    </div>
  ) 
 }
@@ -31,8 +34,6 @@ const App = ({isSideBarVisible, isEventCreatorWindowVisible}) => {
 const mapStateToProps = (state) => {
   return {
     isSideBarVisible: state.isSideBarVisible,
-    isEventCreatorWindowVisible: state.isEventCreatorWindowVisible,
-
   }
 }
 

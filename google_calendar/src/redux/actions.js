@@ -1,8 +1,12 @@
 import * as constants from './constants'
 
 const createEvent = value => {
- 
-    let payload = { id: Date.now(), title: value, important: false, done: false };
+    let payload = { 
+      id: value.id, 
+      title: value.title, 
+      description: value.description, 
+      timeFrom: '09:00', 
+      timeTo: '12:00' };
     return {
       type: constants.CREATE_NEW_CALENDAR_EVENT,
       payload
@@ -38,16 +42,6 @@ const createEvent = value => {
     };
   };
 
-  const openEventCreatorWindow = () => {
-    return {
-      type: constants.OPEN_EVENT_CREATOR_WINDOW
-    };
-  }
-  const closeEventCreatorWindow = () => {
-    return {
-      type: constants.CLOSE_EVENT_CREATOR_WINDOW
-    };
-  }
   const pageOnLoad = () => {
     return {
       type: constants.PAGE_WAS_LOADED
@@ -62,7 +56,5 @@ const createEvent = value => {
     monthReverse,
     monthForward,
     toggleMenu,
-    openEventCreatorWindow,
-    closeEventCreatorWindow,
     pageOnLoad,
   };

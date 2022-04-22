@@ -1,61 +1,61 @@
 import 'antd/dist/antd.css';
 import './eventCreator.css'
-import {  DatePicker } from 'antd';
+import { TimePicker } from 'antd';
 import Draggable from 'react-draggable'; 
 import { connect } from 'react-redux';
-import {closeEventCreatorWindow} from '../../redux/actions'
 import React from 'react'
+import { useParams, useNavigate } from "react-router-dom";
 
 
 
-const EventCreatorWindow = ({hideEventCreator}) => {
-    const { RangePicker } = DatePicker;
+
+const EventCreatorWindow = ({initialEvents}) => {
+
+    let { id } = useParams();
+    let navigate = useNavigate()
     
     let [inputValue, setInputValue] = React.useState();
+    let [timeRange, setTimeRange] = React.useState();
     let [TextAreaValue, setTextAreaValue] = React.useState();
+
     const inputValueHandler = (e) => {
         e.preventDefault()
         setInputValue(e.target.value)
     }
+
     const TextAreaValueHandler = (e) => {
         e.preventDefault()
         setTextAreaValue(e.target.value)
     }
-    const hadleFormData = (e) => {
-          
-        let data = JSON.parse(localStorage.getItem('events'));
-//        data.push({inputValue: inputValue, TextAreaValue: TextAreaValue})
-if(!data){
-    localStorage.setItem('events',
-    JSON.stringify(
-        {inputValue: inputValue, TextAreaValue: TextAreaValue})
-        )
-
-}
-else {
-   
-    console.log(data)
-    //tempArr.push(JSON.stringify({inputValue: inputValue, TextAreaValue: TextAreaValue}))
-    //localStorage.setItem('events', tempArr)
-
-}       
-        
+    const timeRangeHandler = (val) => {
+        setTimeRange(val)
     }
+
+    const hadleFormData = () => {
+        let event = {
+            data: id, 
+            title: inputValue, 
+            description: TextAreaValue, 
+            timeFrom: '09:00', 
+            timeTo: '12:00'}
+            
+            
+            initialEvents.push(event);
+            localStorage.setItem('events', JSON.stringify(initialEvents))   
+    }
+  
     
 
 return(
-    <Draggable 
-    defaultPosition={{x: -250, y: -250}}
-    >
+    <Draggable defaultPosition={{x: -250, y: -250}}>
     <form type='submit'
-    
     className="event-wrapper">
             <input
             onChange = {(e) => inputValueHandler(e)}
             type="text" placeholder='Title here' className='task-input'/>
-            <RangePicker 
-            renderExtraFooter={() => 'extra footer'} 
-            showTime />
+            <TimePicker.RangePicker
+            onChange = {(a) => timeRangeHandler(a)}
+            />
             <textarea
             onChange={(e) => TextAreaValueHandler(e)}
             className='task-description' name="" id="" cols="30" rows="10"></textarea>
@@ -63,19 +63,16 @@ return(
             onClick={(e) => hadleFormData(e)}
             type= 'button' className='button-save'>Save task</button>
             <button
-            onClick={hideEventCreator}
+            onClick={() => navigate('/month', {replace: true})}
             type='button' className="close"></button>
     </form>
     </Draggable>
 )
 }
-
-
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-      hideEventCreator: () => dispatch(closeEventCreatorWindow()) 
-    }
+  const mapStateToProps = state => {
+      return {
+        initialEvents: state.initialEvents
+      }
   }
 
-export default connect(null, mapDispatchToProps)(EventCreatorWindow);
+export default connect(mapStateToProps, null)(EventCreatorWindow);

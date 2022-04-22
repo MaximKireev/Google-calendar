@@ -1,33 +1,45 @@
 import "./Cell.css";
 import { connect } from 'react-redux';
-import {openEventCreatorWindow} from '../../redux/actions'
 import React from 'react'
 import { Badge } from 'antd';
+import {useNavigate} from 'react-router-dom';
+
 
 
  const Cell = (props) => {
-  let {showEventCreator, initialEvents} = props;
+  let { initialEvents} = props;
 
   let { id, day, nextOrPrev, cell } = props.fullItemData;
 
   let renderEvents = initialEvents.filter(item => item.data === id);
+  const navigate = useNavigate();
 
-
-  const handleClick = (event) => {
+  const screateAnEvent = (event) => {
   if(!event.target.getAttribute('data-cell')) return;
   else 
-  showEventCreator()
+  navigate(`/month/createAnEvent/${id}`, {replace: true});
 }
+
+  
+  const handleOnClick = React.useCallback(() => navigate(`/day/${id}`, {replace: true}));
+
 
 
   return (
     <div
-    onClick={handleClick} 
+    onClick={screateAnEvent} 
     id={id} 
     className={nextOrPrev? 'day-cell prevOrNextStyle': 'day-cell'}
     data-cell = {cell} 
    >
-       <Badge count={day} style={{ color: 'black', backgroundColor: 'white',  fontSize: '16px', }}></Badge>
+       <Badge
+       onClick = {handleOnClick}
+       count={day} style={{ 
+       color: 'black', 
+       backgroundColor: 'white',  
+       fontSize: '16px',
+       cursor: 'pointer' }}>
+       </Badge>
       {
         renderEvents?.map(item => <div className="event">{item.description}</div>)
       }
@@ -35,15 +47,11 @@ import { Badge } from 'antd';
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    showEventCreator: () => dispatch(openEventCreatorWindow())  
-  }
-}
+
 const mapStateToProps = (state) => {
   return {
     initialEvents: state.initialEvents,
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cell)
+export default connect(mapStateToProps, null)(Cell)
