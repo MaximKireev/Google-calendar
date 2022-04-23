@@ -25,6 +25,13 @@ opacity: .4;}
   height: 10px;
   padding: 0;
   margin: 0;
+  position: relative;
+
+
+}
+.quarter-of-an-hour:hover{
+  border: 1px solid rgb(217, 220, 224);
+
 }
 
 .hour-cell-wrapper{
@@ -33,12 +40,16 @@ opacity: .4;}
           height: 40px;
           text-align: left;
           font-size: 10px;
-          padding: 0;
           margin: 0 0 0 50px;
+          cursor: pointer;
+}
+.hour-cell-wrapper:hover{
+  border: 1px solid rgb(42, 110, 199);
 }
 .time{
-  display: block;
-  position: relative;
-  left: -2%
+  display: inline;
+  position: absolute;
+  padding: 0;
+  margin-left: -30px;
 }
   

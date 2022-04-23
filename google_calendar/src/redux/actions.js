@@ -47,6 +47,19 @@ const createEvent = value => {
       type: constants.PAGE_WAS_LOADED
     };
   }
+  const openEventCreatorWindow = (val) => {
+    return {
+      type: constants.OPEN_EVENT_CREATOR_WINDOW,
+      payload: val
+    };
+  }
+  const closeEventCreatorWindow = () => {
+    return {
+      type: constants.CLOSE_EVENT_CREATOR_WINDOW
+    };
+  }
+
+
 
   
   export {
@@ -57,4 +70,6 @@ const createEvent = value => {
     monthForward,
     toggleMenu,
     pageOnLoad,
+    openEventCreatorWindow,
+    closeEventCreatorWindow,
   };

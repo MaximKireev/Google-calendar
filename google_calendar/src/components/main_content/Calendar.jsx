@@ -2,13 +2,10 @@ import  Cell  from './Cell';
 import './Calendar.css'
 import React from 'react';
 import { connect } from 'react-redux';
-
-const Calendar = ({currentCalendar, initialEvents}) => {
-
+import EventCreatorWindow from '../eventCreator/EventCreatorWindow'
 
 
-
-  
+const Calendar = ({currentCalendar, isEventCreatorWindowVisible}) => {
 
   return (
     <div className="calendar-wrapper">
@@ -22,6 +19,8 @@ const Calendar = ({currentCalendar, initialEvents}) => {
           ))}
         </div>
       ))}
+      {isEventCreatorWindowVisible? <EventCreatorWindow /> : null}
+
     </div>
   );
 };
@@ -29,6 +28,7 @@ const Calendar = ({currentCalendar, initialEvents}) => {
 const mapStateToProps = (state) => {
   return {
     currentCalendar: state.currentCalendar,
+    isEventCreatorWindowVisible: state.isEventCreatorWindowVisible
   }
 }
 

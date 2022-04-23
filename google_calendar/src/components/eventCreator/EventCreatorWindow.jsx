@@ -4,15 +4,15 @@ import { TimePicker } from 'antd';
 import Draggable from 'react-draggable'; 
 import { connect } from 'react-redux';
 import React from 'react'
-import { useParams, useNavigate } from "react-router-dom";
+import {closeEventCreatorWindow} from '../../redux/actions'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
-const EventCreatorWindow = ({initialEvents}) => {
+const EventCreatorWindow = ({initialEvents, closeEventCreatorWindow, selectedDate}) => {
 
-    let { id } = useParams();
-    let navigate = useNavigate()
+  let navigate = useNavigate();
     
     let [inputValue, setInputValue] = React.useState();
     let [timeRange, setTimeRange] = React.useState();
@@ -33,16 +33,20 @@ const EventCreatorWindow = ({initialEvents}) => {
 
     const hadleFormData = () => {
         let event = {
-            data: id, 
+            data: selectedDate, 
             title: inputValue, 
             description: TextAreaValue, 
             timeFrom: '09:00', 
             timeTo: '12:00'}
+
+            console.log(inputValue, TextAreaValue, timeRange[0]._d,)
             
-            
-            initialEvents.push(event);
-            localStorage.setItem('events', JSON.stringify(initialEvents))   
+            initialEvents.push(event)
+            localStorage.setItem('events', JSON.stringify(initialEvents));
+            navigate('/month', {replace: true});
+            closeEventCreatorWindow()
     }
+
   
     
 
@@ -55,6 +59,7 @@ return(
             type="text" placeholder='Title here' className='task-input'/>
             <TimePicker.RangePicker
             onChange = {(a) => timeRangeHandler(a)}
+            format = {'HH:mm'}
             />
             <textarea
             onChange={(e) => TextAreaValueHandler(e)}
@@ -63,7 +68,7 @@ return(
             onClick={(e) => hadleFormData(e)}
             type= 'button' className='button-save'>Save task</button>
             <button
-            onClick={() => navigate('/month', {replace: true})}
+            onClick={closeEventCreatorWindow}
             type='button' className="close"></button>
     </form>
     </Draggable>
@@ -71,8 +76,15 @@ return(
 }
   const mapStateToProps = state => {
       return {
-        initialEvents: state.initialEvents
+        initialEvents: state.initialEvents,
+        selectedDate: state.selectedDate
       }
   }
 
-export default connect(mapStateToProps, null)(EventCreatorWindow);
+  const mapDispatchToProps = dispatch => {
+    return {
+      closeEventCreatorWindow: () => dispatch(closeEventCreatorWindow()),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventCreatorWindow);

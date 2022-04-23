@@ -3,37 +3,39 @@ import { connect } from 'react-redux';
 import React from 'react'
 import { Badge } from 'antd';
 import {useNavigate} from 'react-router-dom';
+import {openEventCreatorWindow} from '../../redux/actions';
+
 
 
 
  const Cell = (props) => {
-  let { initialEvents} = props;
 
+  let { initialEvents, openEventCreatorWindow} = props;
   let { id, day, nextOrPrev, cell } = props.fullItemData;
 
   let renderEvents = initialEvents.filter(item => item.data === id);
   const navigate = useNavigate();
 
-  const screateAnEvent = (event) => {
+  const createAnEvent = (event) => {
   if(!event.target.getAttribute('data-cell')) return;
   else 
-  navigate(`/month/createAnEvent/${id}`, {replace: true});
+  openEventCreatorWindow(id)
 }
 
   
-  const handleOnClick = React.useCallback(() => navigate(`/day/${id}`, {replace: true}));
+  const switchToDayComponent = React.useCallback(() => navigate(`/day/${id}`, {replace: true}));
 
 
 
   return (
     <div
-    onClick={screateAnEvent} 
+    onClick={createAnEvent} 
     id={id} 
     className={nextOrPrev? 'day-cell prevOrNextStyle': 'day-cell'}
     data-cell = {cell} 
    >
        <Badge
-       onClick = {handleOnClick}
+       onClick = {switchToDayComponent}
        count={day} style={{ 
        color: 'black', 
        backgroundColor: 'white',  
@@ -43,6 +45,8 @@ import {useNavigate} from 'react-router-dom';
       {
         renderEvents?.map(item => <div className="event">{item.description}</div>)
       }
+
+
     </div>
   );
 };
@@ -51,7 +55,19 @@ import {useNavigate} from 'react-router-dom';
 const mapStateToProps = (state) => {
   return {
     initialEvents: state.initialEvents,
+
   }
 }
 
-export default connect(mapStateToProps, null)(Cell)
+const mapDispatchToProps = dispatch => {
+  return {
+    openEventCreatorWindow: (value) => {
+      let payload = value
+      return dispatch(openEventCreatorWindow(payload))
+    } ,
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cell)

@@ -5,11 +5,14 @@ import {ChangeCalendarView} from './ChangeCalendarView'
 import './Header.css'
 import {MenuOutlined, CalendarOutlined} from '@ant-design/icons';
 import PeriodControl from './PeriodControl'
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 
 const Header = ({toggleMenu}) => {
 return (
+    
     <div className="header-wrapper">
+        
         <div className="logo-menu-wrapper">
         <button
         onClick={() => toggleMenu()}
@@ -17,9 +20,15 @@ return (
         <CalendarOutlined style={{ fontSize: '36px', color: '#08c' }}/>
         <span className="logo-text1">Google</span><span className="logo-text2">Calendar</span>
         </div>
-        <PeriodControl />
+        <ErrorBoundary>
+            <PeriodControl />
+        </ErrorBoundary>
+
+
     < ChangeCalendarView/>
+
     </div>
+    
 )
 }
 

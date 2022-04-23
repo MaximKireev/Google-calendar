@@ -12,7 +12,7 @@ const initialState = {
     currentYear: function(){return this.currentDate.getFullYear()} ,
     currentMonth: function(){return this.currentDate.getMonth()},
     currentCalendar,
-    
+    selectedDate: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,8 +24,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isSideBarVisible: !state.isSideBarVisible
-              }
-       
+              };
+        case constants.OPEN_EVENT_CREATOR_WINDOW:
+            return {
+                ...state,
+                isEventCreatorWindowVisible: true,
+                selectedDate: action.payload
+              };
+        case constants.CLOSE_EVENT_CREATOR_WINDOW:
+            return {
+                ...state,
+                isEventCreatorWindowVisible: false
+                  };
 
         case constants.CREATE_NEW_CALENDAR_EVENT:
          return   console.log('event created');  
