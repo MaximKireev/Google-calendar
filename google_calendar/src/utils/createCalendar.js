@@ -5,13 +5,14 @@ export let year = date.getFullYear();
 export let month = date.getMonth();
 
 const createCalendarMatrix = () => {
-  let firstDayOfMonth = new Date(year, month, 1).getDay();
-  let numOfDays = daysInMonth[month];
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  const numOfDays = daysInMonth[month];
 
   let counter = 1;
   let counterAfter = 1;
-  let matrix = [];
+  const matrix = [];
   matrix[0] = days;
+
   for (let row = 1; row < 7; row++) {
     matrix.push([]);
 
@@ -39,9 +40,9 @@ const createCalendarMatrix = () => {
 };
 
 function changeMinusOnesToDates(matrix, month) {
-  let adjustedMaxtrix = matrix;
+  const adjustedMaxtrix = matrix;
   if (month === 0) month = 12;
-  let prevMonthDates = daysInMonth[month - 1];
+  const prevMonthDates = daysInMonth[month - 1];
 
   let counterOne = 0;
   for (let i = adjustedMaxtrix[1].length - 1; i >= 0; i--) {
@@ -95,7 +96,5 @@ export function changeMonth(param) {
     month = 0;
     year += 1;
   }
-  let calendarMatrix = createCalendarMatrix();
-
-  return calendarMatrix;
+  return createCalendarMatrix();
 }

@@ -6,7 +6,6 @@ import EventCreatorWindow from '../eventCreator/EventCreatorWindow'
 
 
 const Calendar = ({currentCalendar, isEventCreatorWindowVisible}) => {
-
   return (
     <div className="calendar-wrapper">
 
@@ -25,11 +24,9 @@ const Calendar = ({currentCalendar, isEventCreatorWindowVisible}) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    currentCalendar: state.currentCalendar,
-    isEventCreatorWindowVisible: state.isEventCreatorWindowVisible
-  }
-}
+const mapStateToProps = (state) => ({
+  currentCalendar: selectCurrentCalendar(state),
+  isEventCreatorWindowVisible: selectIsEventCreatorWindowVisible(state)
+})
 
 export default connect(mapStateToProps, null)(Calendar)
